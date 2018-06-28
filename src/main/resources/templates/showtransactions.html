@@ -13,13 +13,16 @@
 			<th>CalResult</th>
 			<th>TimeStamp</th>
 		</tr>
-		<tr th:each="compensationTransaction,itrStat 	:${compensationTransactionList}">
-		<th th:text="${itrStat.index}+1"></th>
-		<th th:text="${compensationTransaction.employee.EmployeeId}"></th>
-		<th th:text="${compensationTransaction.employee.firstName}"></th>
-		<th th:text="${compensationTransaction.calculateResult}"></th>
-		<th th:text="${compensationTransaction.dateTime}"></th>
-	
+		<tr
+			th:each="compensationTransaction,itrStat 	:${compensationTransactionList}">
+			<th th:text="${itrStat.index}+1"></th>
+			<th th:text="${compensationTransaction.employee.EmployeeId}"></th>
+			<th><span
+				th:text="${compensationTransaction.employee.firstName}"></span> <span
+				th:text="${compensationTransaction.employee.lastName}"></span></th>
+			<th th:text="${compensationTransaction.calculateResult}"></th>
+			<th th:text="${compensationTransaction.dateTime}"></th>
+
 		</tr>
 
 	</table>

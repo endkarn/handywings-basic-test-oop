@@ -11,12 +11,15 @@
 			<th></th>
 		</tr>
 		<tr th:each="employee,itrStat :${employeeList}">
-		<th th:text="${itrStat.index}+1"></th>
-		<th th:text="${employee.EmployeeId}"></th>
-		<th th:text="${employee.firstName}"></th>
-		<th th:text="${employee.birthday}"></th>
-		<th th:text="${employee.employeeType.typeName}"></th>
-		<th><a th:href="@{cal?empId={id}(id=${employee.EmployeeId})}">Cal</a></th>
+			<th th:text="${itrStat.index}+1"></th>
+			<th th:text="${employee.EmployeeId}"></th>
+			<th><span
+				th:text="${employee.firstName}"></span> <span
+				th:text="${employee.lastName}"></span></th>
+
+			<th th:text="${employee.getAge(employee.birthday)}"></th>
+			<th th:text="${employee.employeeType.typeName}"></th>
+			<th><a th:href="@{cal?empId={id}(id=${employee.EmployeeId})}">Cal</a></th>
 		</tr>
 
 	</table>

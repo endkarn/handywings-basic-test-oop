@@ -9,24 +9,24 @@
 	Fullname of Employee
 	<br>
 	<b th:text="${employee.firstName}"></b>
-	<b th:text="${employee.lastName}"></b><br>
+	<b th:text="${employee.lastName}"></b><br><br>
 	Type of Employee
 	<br>
 	<b th:text="${employee.employeeType.typeName}"></b>
-	<div th:switch="${employee.employeeType.typeName}">
+	<div th:switch="${employee.employeeType.typeName}"><br>
 	
 	<div th:case="'PartTime'">
 	<form action="caltransactionparttime">
-	Total Work Hours <input type="number" name="workhours">
-	<input type="hidden" name="employeeId" th:value="${employee.employeeId}">
+	Total Work Hours <br><input type="number" name="workhours">
+	<input type="hidden" name="employeeId" th:value="${employee.employeeId}"><br>
 	<input type="submit">
 	</form>
 	</div>
 	
 	<div th:case="'FullTime'">
 	<form action="caltransactionfulltime">
-	<input type="hidden" name="employeeId" th:value="${employee.employeeId}">
-	<input type="submit">
+	<input type="hidden" name="employeeId" th:value="${employee.employeeId}"><br>
+	<input type="submit" value="Calucate Payout">
 	</form>
 	</div>
 	

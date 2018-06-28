@@ -3,6 +3,10 @@ package employee;
 
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -78,7 +82,15 @@ public class Employee {
 		this.empWage = empWage;
 	}
 
-
+	public long getAge(Date birthday) {
+		LocalDate start = LocalDate.parse( new SimpleDateFormat("yyyy-MM-dd").format(birthday) );
+		LocalDate end = LocalDate.now();
+		long years = ChronoUnit.YEARS.between(start, end);
+		//System.out.println(years); // 17
+		
+		return years;
+		
+	}
 
 
 

@@ -3,6 +3,7 @@ package employee;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.Year;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.datatype.jsr310.ser.YearSerializer;
 
 @Controller
 //@RequestMapping(path = "/demo")
@@ -24,7 +27,7 @@ public class EmployeeController {
 	private CompensationTransactionRepository compensationTransactionRepository;
 
 	@GetMapping(path="/add")
-	public @ResponseBody String addNewEmployee (@RequestParam Integer typeemployee,
+	public String addNewEmployee (@RequestParam Integer typeemployee,
 			@RequestParam String firstname,
 			@RequestParam String lastname,
 			@RequestParam Date birthday,
@@ -44,13 +47,14 @@ public class EmployeeController {
 		n.setEmpWage(wage);
 		
 		employeeRepository.save(n);
-		return "saved";
+		return "redirect:/insertemployee.html";
 	}
 	
 	@GetMapping(path="/all")
 	public String getAllEmp(Model model){
 		Iterable<Employee> employeeList = employeeRepository.findAll();
 		//System.out.println(employeeList);
+		
 		model.addAttribute("employeeList",employeeList);
 		return "allemployee";
 	}
@@ -85,7 +89,7 @@ public class EmployeeController {
 		transaction.setDateTime(timestamp);
 		transaction.setCalculateResult((employee.getEmpWage() * 0.97));
 		compensationTransactionRepository.save(transaction);
-		return "calculated resule = "+transaction.getCalculateResult()+" Baht";
+		return "calculated result = "+transaction.getCalculateResult()+" Baht";
 	}
 	
 	@GetMapping(path="/showtransactions")
@@ -93,6 +97,11 @@ public class EmployeeController {
 		Iterable<CompensationTransaction> compensationTransactionList = compensationTransactionRepository.findAll();
 		model.addAttribute("compensationTransactionList",compensationTransactionList);
 		return "showtransactions";
+	}
+	
+	@GetMapping(path="/insertemployee")
+	public String InsertEmployee(){
+		return "redirect:/insertemployee.html";
 	}
 
 	
