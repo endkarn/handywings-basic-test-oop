@@ -1,0 +1,25 @@
+
+<html xmlns:th="http://thymeleaf.org">
+<body>
+	<table>
+		<tr>
+			<th>#</th>
+			<th>Employee ID</th>
+			<th>Name</th>
+			<th>Age</th>
+			<th>Type</th>
+			<th></th>
+		</tr>
+		<tr th:each="employee,itrStat :${employeeList}">
+		<th th:text="${itrStat.index}+1"></th>
+		<th th:text="${employee.EmployeeId}"></th>
+		<th th:text="${employee.firstName}"></th>
+		<th th:text="${employee.birthday}"></th>
+		<th th:text="${employee.employeeType.typeName}"></th>
+		<th><a th:href="@{cal?empId={id}(id=${employee.EmployeeId})}">Cal</a></th>
+		</tr>
+
+	</table>
+
+</body>
+</html>

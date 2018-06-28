@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>#</th>
+			<th>Employee ID</th>
+			<th>Name</th>
+			<th>CalResult</th>
+			<th>TimeStamp</th>
+		</tr>
+		<tr th:each="compensationTransaction,itrStat 	:${compensationTransactionList}">
+		<th th:text="${itrStat.index}+1"></th>
+		<th th:text="${compensationTransaction.employee.EmployeeId}"></th>
+		<th th:text="${compensationTransaction.employee.firstName}"></th>
+		<th th:text="${compensationTransaction.calculateResult}"></th>
+		<th th:text="${compensationTransaction.dateTime}"></th>
+	
+		</tr>
+
+	</table>
+</body>
+</html>

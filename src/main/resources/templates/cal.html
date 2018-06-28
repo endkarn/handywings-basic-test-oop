@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	Fullname of Employee
+	<br>
+	<b th:text="${employee.firstName}"></b>
+	<b th:text="${employee.lastName}"></b><br>
+	Type of Employee
+	<br>
+	<b th:text="${employee.employeeType.typeName}"></b>
+	<div th:switch="${employee.employeeType.typeName}">
+	
+	<div th:case="'PartTime'">
+	<form action="caltransactionparttime">
+	Total Work Hours <input type="number" name="workhours">
+	<input type="hidden" name="employeeId" th:value="${employee.employeeId}">
+	<input type="submit">
+	</form>
+	</div>
+	
+	<div th:case="'FullTime'">
+	<form action="caltransactionfulltime">
+	<input type="hidden" name="employeeId" th:value="${employee.employeeId}">
+	<input type="submit">
+	</form>
+	</div>
+	
+	</div>
+	
+</body>
+</html>
